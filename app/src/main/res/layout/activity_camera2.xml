@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
 
-    <TextureView
+    <com.zhengsr.camerademo.view.AutoFitTextureView
         android:id="@+id/texture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"
+        android:background="#cc4285f4"
         android:orientation="horizontal">
         <Button
             android:layout_width="0dp"
@@ -24,6 +27,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="拍照"
+            android:layout_marginLeft="5dp"
             android:onClick="tackPicture"/>
 
         <Button
@@ -31,7 +35,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="长按录制"
+            android:layout_marginLeft="5dp"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

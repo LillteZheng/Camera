@@ -20,6 +20,7 @@ import android.media.ImageReader;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.util.Size;
 import android.util.SparseIntArray;
 import android.view.Surface;
@@ -38,8 +39,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-public class Demo extends Activity implements View.OnClickListener
-{
+public class Demo extends Activity implements View.OnClickListener {
+    private static final String TAG = "Demo";
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     static
     {
@@ -120,6 +121,7 @@ public class Demo extends Activity implements View.OnClickListener
     }
     private void captureStillPicture()
     {
+        Log.d(TAG, "zsr 开始拍照: ");
         try
         {
             if (cameraDevice == null)
@@ -153,6 +155,7 @@ public class Demo extends Activity implements View.OnClickListener
                         public void onCaptureCompleted(CameraCaptureSession session
                                 , CaptureRequest request, TotalCaptureResult result)
                         {
+                            Log.d(TAG, "zsr onCaptureCompleted: ");
                             try
                             {
                                 // 重设自动对焦模式
@@ -266,6 +269,7 @@ public class Demo extends Activity implements View.OnClickListener
             Size largest = Collections.max(
                     Arrays.asList(map.getOutputSizes(ImageFormat.JPEG)),
                     new CompareSizesByArea());
+            Log.d(TAG, "zsr setUpCameraOutputs: "+largest.getWidth()+" "+largest.getHeight());
             // 创建一个ImageReader对象，用于获取摄像头的图像数据
             imageReader = ImageReader.newInstance(largest.getWidth(), largest.getHeight(),
                     ImageFormat.JPEG, 2);
@@ -277,6 +281,7 @@ public class Demo extends Activity implements View.OnClickListener
                         public void onImageAvailable(ImageReader reader)
                         {
                             // 获取捕获的照片数据
+                            Log.d(TAG, "zsr 有图片数据了: ");
                             Image image = reader.acquireNextImage();
                             ByteBuffer buffer = image.getPlanes()[0].getBuffer();
                             byte[] bytes = new byte[buffer.remaining()];
@@ -303,6 +308,7 @@ public class Demo extends Activity implements View.OnClickListener
             // 获取最佳的预览尺寸
             previewSize = chooseOptimalSize(map.getOutputSizes(
                     SurfaceTexture.class), width, height, largest);
+            Log.d(TAG, "zsr setUpCameraOutputs: "+previewSize.getWidth()+" "+previewSize.getHeight());
             // 根据选中的预览尺寸来调整预览组件（TextureView）的长宽比
             int orientation = getResources().getConfiguration().orientation;
             if (orientation == Configuration.ORIENTATION_LANDSCAPE)

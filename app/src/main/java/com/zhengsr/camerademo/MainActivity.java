@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.zhengsr.camerademo.camera1.Camera1Activity;
+import com.zhengsr.camerademo.camera2.Camera2Activity;
+import com.zhengsr.camerademo.camera2.DemoActivity;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA_PERMISSION = 1;
@@ -27,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void camera2(View view) {
+        startActivity(new Intent(this, DemoActivity.class));
+    }
+
+    public void demo(View view) {
         startActivity(new Intent(this, Demo.class));
     }
 }

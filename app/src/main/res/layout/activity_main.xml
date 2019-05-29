@@ -16,6 +16,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Demo"
+        android:layout_marginTop="10dp"
+        android:onClick="demo"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Camera2"
         android:layout_marginTop="10dp"
         android:onClick="camera2"/>
